@@ -7,17 +7,10 @@ public class CamelRoute  extends RouteBuilder {
     @Override
     public void configure() {
 
-        from("timer:foo?period=1000")
+        from("timer:foo?period={{timer.period}}")
                 .setHeader("User-Agent", header("User-Agent"))
                 .setHeader("Accept", header("Accept"))
-                .to("http://quarkus-rest-api.rest-api.svc.cluster.local:8080/hello") // Replace with your REST endpoint
-                .log("Response=${body}");
-
-        // from("platform-http:/not-secured")
-        //         .setBody(constant("Not secured endpoint!"));
-        // from("platform-http:/secured/authenticated")
-        //         .setBody(simple("You are authenticated user so you can perform this action."));
-        // from("platform-http:/secured/authorized")
-        //         .setBody(simple("You are authorized to perform sensitive operation."));
+                .to("{{rest.endpoint.url}}")
+                .log("Response=${body}");        
     }
 }
