@@ -10,7 +10,7 @@ public class CamelRoute  extends RouteBuilder {
         from("timer:foo?period=1000")
                 .setHeader("User-Agent", header("User-Agent"))
                 .setHeader("Accept", header("Accept"))
-                .to("http://localhost:8081/hello") // Replace with your REST endpoint
+                .to("http://quarkus-rest-api.rest-api.svc.cluster.local:8080/hello") // Replace with your REST endpoint
                 .log("Response=${body}");
 
         // from("platform-http:/not-secured")
