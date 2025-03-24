@@ -17,7 +17,7 @@ public class CamelRoute  extends RouteBuilder {
                 .setHeader("Accept", header("Accept"))
                 // .setHeader("CamelHttpCookie", simple("cookieName=" + LocalDateTime.now().toString()))
                 // .setHeader("Cookie", constant("curio="+ System.currentTimeMillis()))
-                .process(exchange -> exchange.getIn().setHeader("Cookie", "curio=" + System.currentTimeMillis()))
+                // .process(exchange -> exchange.getIn().setHeader("Cookie", "curio=" + System.currentTimeMillis()))
                 .toD("{{rest.endpoint.url}}")
                 .log("Response=${body}")
                 .log(dateTimeStr);        
